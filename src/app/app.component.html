@@ -1,0 +1,21 @@
+<ng-container *ngIf="isLoggedIn; else notAuthenthicated">
+  <ng-container *ngIf="router.url === '/hotel'; else notHotel"></ng-container>
+  
+  <app-hotel></app-hotel>
+
+  <ng-template #notHotel>
+    <app-header></app-header>
+
+    <main class="d-flex flex-column">
+      <router-outlet></router-outlet>
+    </main>
+
+    <app-footer></app-footer>
+  </ng-template>
+</ng-container>
+  
+<ng-template #notAuthenthicated>
+  <main class="d-flex flex-column">
+    <router-outlet></router-outlet>
+  </main>
+</ng-template>

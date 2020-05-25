@@ -1,0 +1,79 @@
+<div class="bobba-hero" style="background-image: url('assets/images/bg-header.png');">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-9 col-sm-12">
+                <div class="row">
+                    <div class="col-3">
+                        <div id="bobba-user-podium">
+                            <ng-container *ngIf="user?.id === 1; else nichtDeni">
+                                <img src="assets/images/dog.png" class="bobba-user-dog">
+                            </ng-container>
+
+                            <ng-template #nichtDeni>
+                                <ng-container *ngIf="user?.motto.includes('crickey'); else bobbaUser">
+                                    <img src="assets/images/crickey.gif" class="bobba-user-crickey">
+                                </ng-container>
+    
+                                <ng-template #bobbaUser>
+                                    <img [src]="'https://www.habbo.com/habbo-imaging/avatarimage?figure='+ user?.look +'&direction=2&head_direction=3&action=wav&size=l&gesture=sml'" alt='user?.username' />
+                                </ng-template>
+                            </ng-template>
+                        </div>
+                    </div>
+
+                    <div class="col-9 pt-5">
+                        <h5>Willkommen zurück, <strong>{{ (user?.id === 1) ? 'Hund' : user?.username }}</strong>!</h5>
+                        <ul class="list-unstyled bobba-user-info mt-2">
+                            <li>
+                                <img src="assets/images/icons/credits.png" />
+                                {{ user?.credits }}
+                            </li>
+                            <li>
+                                <img src="assets/images/icons/duckets.png" />
+                                {{ user?.pixels }}
+                            </li>
+                            <li>
+                                <img src="assets/images/icons/diamonds.png" />
+                                {{ user?.points }}
+                            </li>
+                            <li class="w-100">
+                                <img src="assets/images/icons/motto.png" />
+                                {{ user?.motto }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 d-lg-block d-sm-none">
+                <div class="bobba-register">
+                    <p class="bobba-online"><span>1337</span> Bobbas im Hotel</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center bobba-tv">
+            <a href="#">
+                <img src="https://cdn.discordapp.com/attachments/659934187121410058/708463815083294861/discordnew_da.png" />
+            </a>
+        </div>
+
+        <div class="col-12 mb-3">
+            <h5 class="section-title">Online Freunde</h5>
+            <app-home-friends-slider></app-home-friends-slider>
+        </div>
+
+        <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+            <h5 class="section-title">Neuste Neuigkeiten</h5>
+            <app-home-article-slider></app-home-article-slider>
+        </div>
+
+        <div class="col-4">
+            <h5 class="section-title">Top Bobba</h5>
+        </div>
+    </div>
+</div>

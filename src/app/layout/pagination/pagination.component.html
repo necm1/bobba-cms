@@ -1,0 +1,39 @@
+<nav aria-label="Pagination">
+    <ul class="pagination" *ngIf="!(autoHide && p.pages.length <= 1)">
+        <li class="page-item" [class.disabled]="p.isFirstPage()" *ngIf="directionLinks">
+            <a tabindex="0" class="page-link" *ngIf="1 < p.getCurrent()" (keyup.enter)="p.previous()" (click)="p.previous()" aria-label="Letztes">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+
+            <span class="page-link" *ngIf="p.isFirstPage()" aria-label="Letztes">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </span>
+        </li>
+        
+        <li class="page-item" [class.active]="p.getCurrent() === page.value" *ngFor="let page of p.pages">
+            <a tabindex="0" class="page-link" (keyup.enter)="p.setCurrent(page.value)" (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
+                {{ (page.label === '...') ? page.label : (page.label | number:'') }}
+            </a>
+            <ng-container *ngIf="p.getCurrent() === page.value">
+                <span class="page-link">
+                    {{ (page.label === '...') ? page.label : (page.label | number:'') }}
+                    <span class="sr-only">(current)</span>
+                </span>
+            </ng-container>
+        </li>
+
+        <li class="page-item" [class.disabled]="p.isLastPage()" *ngIf="directionLinks">
+            <a class="page-link" tabindex="0" *ngIf="!p.isLastPage()" (keyup.enter)="p.next()" (click)="p.next()" aria-label="Nächstes">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Nächstes</span>
+            </a>
+
+            <span class="page-link" *ngIf="p.isLastPage()" aria-label="Nächstes">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Nächstes</span>
+            </span>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,449 @@
+/**
+  * @template Bobba
+  * @author necmi
+  */
+
+@import url(https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700&display=swap);
+@import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+
+html, body {
+    height: 100vh;
+}
+
+body {
+  background-color: #1B1B1B;
+  color: #fff;
+  font-family: 'Maven Pro', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  color: #bababa;
+  -webkit-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+  text-decoration: none !important;
+  font-size: 13px;
+  transition: color 0.2s ease-in-out;
+
+  &:hover, &:focus {
+    color: #fff;
+  }
+}
+
+.bobba-online {
+  color: #bababa;
+
+  span {
+    color: #fff;
+    font-weight: bold;
+  }
+}
+
+.bobba-register {
+  background-image: url('./assets/images/register.png');
+  z-index: 2;
+  width: 600px;
+  height: 510px;
+  background-repeat: no-repeat;
+  position: relative;
+
+  .bobba-online {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-color: #151515a3;
+    padding: .8rem;
+    border-radius: 3px;
+    color: #fff;
+  }
+}
+
+/* bobba-shape start */
+.bobba-shape {
+  -webkit-clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+  clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+  background-image: url('./assets/images/bg-header.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+@media (max-width: 992px) {
+  .bobba-shape {
+      clip-path: stroke-box;
+      -webkit-clip-path: stroke-box;
+  }
+}
+/* bobba-shape end */
+
+/* input start */
+.form-control {
+  background-color: #232323;
+  border: none;
+  padding: 1.575rem 0.95rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #bababa;
+  border-radius: 3px;
+  transition: all 0.3s;
+
+  &:focus, &:hover {
+    background-color: #292929;
+    color: #fff;
+    box-shadow: none;
+    border-color: transparent;
+  }
+}
+
+.was-validated .form-control:invalid, .form-control.is-invalid, .form-control.ng-dirty.ng-invalid {
+  border: 1px solid #dc3545;
+}
+
+.custom-control {
+  overflow: hidden;
+}
+
+.custom-control-label {
+  &::before {
+    background-color: #444;
+    border: none;
+  }
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+  background-image: url('./assets/images/sprite.png');
+  background-position: 4px 5px;
+  background-size: 10.9rem;
+  position: absolute;
+  left: -1.61rem;
+  top: 0.1rem;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #444;
+}
+
+.custom-checkbox .custom-control-input:focus~.custom-control-label::before {
+  box-shadow: 0 0 0 1px #2929299e;
+}
+/* input end */
+
+/* button start */
+.btn {
+  transition: all 250ms ease;
+  border-radius: 3px;
+  padding: 18px 34px;
+  letter-spacing: 0.24px;
+  font-size: 12px;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #2b72e6;
+
+  &:hover {
+    background-color: #175ac7;
+  }
+}
+
+.btn-check {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.16);
+  padding: 16px  !important;
+
+  &:hover {
+    cursor: pointer;
+    color: #1b1b1b !important;
+    background-color: #ffffff;
+    box-shadow: inset 0 0 0 2px #fff;
+  }
+}
+/* button end */
+
+/* alertify start */
+.alertify-notifier {
+  .ajs-message {
+    background: #3498db;
+    text-shadow: 0px 2px 0 rgba(0, 0, 0, 0.47);
+    border: unset;
+    color: #fff;
+
+    .ajs-error {
+      background: #fc5c65;
+    }
+
+    .ajs-success {
+      background: #20bf6b;
+    }
+  }
+}
+/* alertify end */
+
+/* bobba-hero start */
+.bobba-hero {
+  width: 100vw;
+  height: 14rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(27, 27, 27, 0.75);
+    z-index: 1;
+  }
+
+  .container {
+    z-index: 2;
+    position: relative;
+  }
+}
+
+.bobba-hero-text {
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  text-align: center;
+  -webkit-box-flex: 1;
+  flex: 1;
+  padding-top: 5rem;
+}
+/* bobba-hero end */
+
+/* swiper start */
+swiper>.swiper.s-wrapper .swiper-wrapper .swiper-slide {
+  overflow: hidden !important;
+}
+/* swiper end */
+
+/* card start */
+.card {
+  border: none;
+  background: rgba(14, 14, 14, 0.2);
+  border-radius: 3px;
+
+  .card-header {
+    background: #1f1f1f;
+    border-bottom: 1px solid #1b1b1b;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    padding: 1.4rem 2rem;
+
+    h2 {
+      font-weight: 700;
+      font-size: 24px;
+    }
+  }
+
+  .card-body {
+    padding: 1.4rem 2rem;
+  }
+
+  .card-footer {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 12px;
+    border-top: 1px solid #1b1b1b;
+    padding: 1.4rem 2rem;
+  }
+}
+
+/* card end */
+
+.section-title {
+  font-weight: 600;
+
+  .section-pattern {
+    width: 100%;
+    height: 20px;
+    opacity: 0.4;
+    display: block;
+  
+    &.dark {
+      background-image: url('./assets/images/patterns/decorated-pattern-dark.svg');
+    }
+  
+    &.light {
+      background-image: url('./assets/images/patterns/decorated-pattern-light.svg');
+    }
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+/* text colors start */
+.text-red {
+  color: #ff8282 !important;
+}
+
+/* text colors end */
+
+/* loader start */
+#spinner.backdrop {
+  background-color: rgba(27, 27, 27, 0.85) !important;
+}
+/* loader end */
+
+/* utilities start */
+.blur-1 {
+  filter: blur(.1rem);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.text-lines {
+  font-weight: 500;
+  color: #bababa;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 0;
+  letter-spacing: 0.08px;
+  font-size: 12px;
+
+  &::before {
+    margin-right: 25px;
+  }
+
+  &::after {
+    margin-left: 25px;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    height: 1px;
+    background-color: #282828;
+  }
+}
+/* utilities end */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2b2b2b;
+  border: 0px solid #2b2b2b;
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #282828;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+
+::-webkit-scrollbar-track {
+  background: #0e0e0e;
+  border: 0px none #ffffff;
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-track:hover {
+  background: #0e0e0e;
+}
+
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+textarea::-webkit-scrollbar,
+input::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+textarea::-webkit-scrollbar-button,
+input::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+
+textarea::-webkit-scrollbar-thumb,
+input::-webkit-scrollbar-thumb {
+  background: #2b2b2b;
+  border: 0px solid #2b2b2b;
+  border-radius: 0px;
+  border: solid 3px transparent;
+}
+
+textarea::-webkit-scrollbar-thumb:hover,
+input::-webkit-scrollbar-thumb:hover {
+  background: #282828;
+}
+
+textarea::-webkit-scrollbar-thumb:active,
+input::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+
+textarea::-webkit-scrollbar-track,
+input::-webkit-scrollbar-track {
+  background: #0e0e0e;
+  border: 0px none #ffffff;
+  border-radius: 0px;
+  border: solid 3px transparent;
+}
+
+textarea::-webkit-scrollbar-track:hover,
+input::-webkit-scrollbar-track:hover {
+  background: #0e0e0e;
+}
+
+textarea::-webkit-scrollbar-track:active,
+input::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+
+textarea::-webkit-scrollbar-corner,
+input::-webkit-scrollbar-corner {
+  background: transparent;
+}

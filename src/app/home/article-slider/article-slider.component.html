@@ -1,0 +1,22 @@
+<ng-container *ngIf="loaderService.loader; else slider">
+  <app-loader></app-loader>
+</ng-container>
+
+<ng-template #slider>
+  <swiper #news [config]="newsConfig" >
+      <ng-container *ngFor="let article of articles">
+        <div class="bobba-news" [style.background-image]="'url(' + article.image + ')'">
+          <div class="bobba-news-info">
+              <div class="col-8">
+                <h5 class="pt-3 m-0">{{ article.title }}</h5>
+                <p>{{ article.description }}</p>
+              </div>
+
+              <div class="col-4">
+                  <a [routerLink]="['/article', article.id]" class="btn btn-primary float-right text-uppercase">Weiterlesen</a>
+              </div>
+          </div>
+        </div>
+      </ng-container>
+  </swiper>
+</ng-template>

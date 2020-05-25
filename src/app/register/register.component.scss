@@ -1,0 +1,28 @@
+.bobba-shape {
+    -webkit-clip-path: polygon(0% 0%, 65% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(0% 0%, 65% 0%, 100% 100%, 0% 100%);
+    background-image: url('../../assets/images/habbos.png');
+    background-repeat: repeat;
+    background-position: unset;
+    position: relative;
+ 
+    .bobba-register {
+        width: 50rem;
+        position: absolute;
+        top: 20%;
+   
+        .bobba-online {
+            left: 40%;
+        }
+    }
+}
+ 
+small {
+    opacity: 0.5;
+    font-size: 13px;
+}
+ 
+label {
+    opacity: 0.5;
+    font-size: 13px;
+}

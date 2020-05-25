@@ -1,0 +1,25 @@
+.page-item.disabled .page-link {
+    color: #909090;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #191919;
+    border-color: #232323;
+}
+
+.page-item.active .page-link {
+    background-color: #212121;
+    border-color: #232323;
+}
+
+.page-link {
+    background-color: #191919;
+    border-color: #232323;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+
+    &:hover,
+    &:focus {
+        background-color: #212121;
+        border-color: #232323;
+    }
+}

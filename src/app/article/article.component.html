@@ -1,0 +1,83 @@
+<ng-container *ngIf="loaderService.loader; else articleContent">
+    <app-loader></app-loader>
+</ng-container>
+
+<ng-template #articleContent>
+    <div class="bobba-hero" [ngStyle]="{'background-image':'url('+ article.image +')'}">
+        <div class="container">
+            <div class="bobba-hero-text">
+                <h3>Neuigkeiten</h3>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h2>{{ article.title }}</h2>
+                <span class="article-date">{{ article.created_at | date: 'dd MMM yyyy' }}</span>
+            </div>
+            
+            <div class="card-body">
+                {{ article.content }}
+            </div>
+    
+            <div class="card-footer">
+                <a href="#" class="article-author">
+                    <img [src]="'https://habbo.com/habbo-imaging/avatarimage?figure='+ article.user.look +'&amp;direction=2&amp;head_direction=3&amp;action=undefined&amp;size=s&amp;gesture=sml&amp;headonly=1'">
+                    {{ article.user.username }}
+                </a>
+    
+                <div class="d-flex">
+                    <button class="article-btn" [class.active]="voteActive" (click)="onVote(article.id)">
+                        <span>{{ votes }}</span>
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5>Kommentar schreiben</h5>
+                <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <textarea class="form-control" formControlName="comment" [ngClass]="{ 'has-error': isSubmitted && f.comment.errors }" autofocus required></textarea>
+                    </div>
+    
+                    <button type="submit" class="btn btn-primary">Kommentieren</button>
+                </form>
+            </div>
+        </div>
+    
+        <ng-container *ngIf="comments.length > 0">
+            <h4>Kommentare</h4>
+    
+            <ng-container *ngFor="let comment of comments | paginate: { id: 'article', itemsPerPage: 10, currentPage: paginationNumber }">
+                <div class="card comment mb-2">
+                    <div class="card-body">
+                        <a [routerLink]="['/profile', comment.user.username]" class="article-author ml-2 mb-2">
+                            <img [src]="'https://habbo.com/habbo-imaging/avatarimage?figure='+ comment.user.look +'&amp;direction=2&amp;head_direction=3&amp;action=undefined&amp;size=s&amp;gesture=sml&amp;headonly=1'">
+                            {{ comment.user.username }}
+                        </a>
+    
+                        <p>{{ comment.content }}</p>
+    
+                        <div class="comment-info">
+                            <small>{{ comment.created_at | date: 'dd.MM.yyy' }} um {{ comment.created_at | date: 'hh:mm' }}</small>
+                            <span class="cursor-pointer text-red pl-2" (click)="onDelete(comment.id)">
+                                <small>Kommentar löschen</small>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="comments.length > 10">
+                <pagination-template id="article" #p="paginationApi" (pageChange)="paginationNumber = $event">
+                    <app-pagination [data]="p" class="float-right"></app-pagination>
+                </pagination-template>
+            </ng-container>
+        </ng-container>
+    </div>
+</ng-template>

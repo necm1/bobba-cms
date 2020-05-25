@@ -1,0 +1,53 @@
+<ng-container *ngIf="loaderService.loader; else photos">
+    <app-loader></app-loader>
+</ng-container>
+
+<ng-template #photos>
+    <div class="bobba-hero" style="background-image: url('assets/images/banner.png')">
+        <div class="container">
+            <div class="bobba-hero-text">
+                <h3>Fotos</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <ng-container *ngFor="let photo of photos$ | paginate: { id: 'photos', itemsPerPage: 9, currentPage: paginationNumber }">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-2">
+                    <div class="card card-default">
+                        <div class="card-body">
+                            <div class="photo">
+                                <div class="photo-src" [style.background-image]="'url(' + photo.url + ')'"></div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="d-flex">
+                                <a [routerLink]="['/profile', photo.user.username]">
+                                    <div class="bobba-navbar-avatar mr-3 float-left mr-2 " [style.background-image]="'url(http://habbo.com/habbo-imaging/avatarimage?figure=' + photo.user.look + '&direction=3&head_direction=3&gesture=sml)'"></div>
+                                </a>
+                            
+                                <span class="photo-info pt-3">
+                                    <div class="d-block">
+                                        <small>Geschossen von: </small> {{ photo.user.username }}
+                                    </div>
+
+                                    <div class="d-block">
+                                        <small>Geschossen in: </small> {{ photo.room.name }}
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+        <ng-container *ngIf="photos$.length > 9">
+            <pagination-template #p="paginationApi" id="photos" (pageChange)="paginationNumber = $event">
+                <app-pagination [data]="p" class="float-right"></app-pagination>
+            </pagination-template>
+        </ng-container>
+    </div>
+</ng-template>

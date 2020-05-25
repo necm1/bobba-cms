@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-md navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" routerLink='/'>
+            <img src="assets/images/logo_small.png" class="img-responsive" alt="Bobba" title="Bobba" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigationDropdown" aria-controls="navigationDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navigationDropdown">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink='/home' routerLinkActive='active'>startseite</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/articles" routerLinkActive='active'>neuigkeiten</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="communityDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">community</a>
+
+                    <div class="dropdown-menu" aria-labelledby="communityDropdown">
+                        <a class="dropdown-item" routerLink="/community/photos" routerLinkActive='active'>Fotos</a>
+                        <a class="dropdown-item" routerLink="/community/hall-of-fame" routerLinkActive='active'>Hall of Fame</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/team" routerLinkActive='active'>bobba team</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown" id="bobba-user">
+                    <a class="nav-link dropdown-toggle float-right bobba-navbar-user" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="bobba-navbar-avatar float-left mr-2 d-xl-block d-lg-block d-md-none d-sm-none" [style.background-image]="'url(http://habbo.com/habbo-imaging/avatarimage?figure=' + user?.look + '&direction=3&head_direction=3&gesture=sml)'"></div>
+                        {{ user?.username }}
+                    </a>
+                    
+                    <div class="dropdown-menu" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <div class="dropdown-divider"></div>
+                        <span class="dropdown-item cursor-pointer" (click)="logout()">Abmelden</span>
+                    </div>
+                </li>
+
+                <li class="form-inline">
+                    <a class="nav-link btn btn-check" routerLink='/hotel'>einchecken</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

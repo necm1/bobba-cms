@@ -1,0 +1,65 @@
+:host {
+    display: contents;
+}
+
+#bobba-user-podium {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABbCAYAAACFziAsAAAAIGNIUk0AAHonAACAgwAA+mQAAIDSAAB2hgAA7OkAADmeAAAV/sZ+0zoAAAAJcEhZcwAACxAAAAsQAa0jvXUAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTCtCgrAAAADOUlEQVR4Xu3RwW3bQBSEYRcRIHABOQRIMa4gtxThJnx2twrk6AX07xEpkm+5b6U5fECyibizM0+n02lob2+/T1P899HIw5F4kM44wPv7n0/47/x9dfKwMhbuQQ7GgjnAEv6e369GHlbCQlXpc/h7fr8aedgTC1Ql78Hv8/7e5GFPLEyVuge/z/t7k4dHYkGqxJZ4P/MdTR4eiYWo0lri/cx3NHnYEgtQJfXEfMzfmjxsiQ9WpfTEfMzfmjzMxAeqEipjfr4vmzzMxAepR1fG/HxfNnm4Bx+gHjkyvo/v30se7sHA6lEj4/v4/r3k4RoMqB5xz/h+9rOWPFyDgVToe8b3s5+15OEcBlAhHxn7YX9L5OEcXqhCPTL2w/6WyMMpXqBC2HXsj/2SPJziB9Wldh37Y7/05YAfUJfYduyX/X/6yxl/oD5q27Ff9u8BOoveX19fPniQzqL3/4PEH8J0nDP1EduO/bJ/D3Iw9sv+vwxC/IC6xK5jf6rjKQ/SGPtTHU8tDkK8QIV4ZOxHdTjHgyRjP6rDOasHIQZQIe8Z3686WsOD7MT3q47W2D0IMaB6xMj4PtXBHh5kJb5PdbBH+iDEB6hHVsb86o2ZPMgC5ldvzPT07fvz6ezHz18f1H/KxAeqEnpiPvWGTNF77OBBgPnUGzItDkLqI5lYgCqpJd6vMmZSHZ95kAverzJmUh2f3TwIqUsysSBV4h78vsqQSXWoeJALlSGT6lDZPAipEJlYoCp5Dn+v7sikOrqFB2lEdXSLtEFIhczEgkcdgDxIEtXBFs0GIfWITKMOQB5kI/XGDIcNQuqRlak3tOBBbqTe0EK3QUiV0JPKeAQPcoXKeIQyg5AqqSWVoQcPcqEy9FB2EFIl7qHuqMCDFDPMIKRKnqO+UZEHKWbYQWjUAciDFHM3g4TR3xH5PUgRkd+DFBH5PUgRkd+DFBH5PUgRkd+DFBH5PUgRkd+DFBH5PUgRkd+DFBH5PUgRkd+DFBH5PUgRkd+DFBH5PUgRkd+DFBH5PUgRkd+DFBH5PUgRkd+DFBH5PUgRkd+DFBH5PUgRkd+DFBH5PUgRkd+DFBH5PUgRkd+DFPEv//PpL4n42DiSKc3hAAAAAElFTkSuQmCC');
+    background-repeat: no-repeat;
+    background-position: 1.3rem 11rem;
+    height: 14rem;
+    position: relative;
+
+    & > .bobba-user-crickey {
+        position: absolute;
+        top: 6.7rem;
+        left: 1.6rem;
+    }
+
+    & > .bobba-user-dog {
+        position: absolute;
+        left: -.6rem;
+        top: 6rem;
+    }
+}
+
+.bobba-tv {
+    margin-top: -1rem;
+    background-image: url('https://cdn.discordapp.com/attachments/659934187121410058/708464705320124486/blocked.gif');
+    background-repeat: no-repeat;
+    height: 9rem;
+    background-position: center;
+    padding-top: 2.5rem;
+}
+
+.section-title {
+    text-transform: uppercase;
+}
+
+.bobba-user-info {
+    display: inline-flex;
+    flex-wrap: wrap;
+
+    li {
+        padding-left: .2rem;
+        -webkit-box-align: center;
+        align-items: center;
+        box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.16);
+        padding: 8px 15px;
+        border-radius: 5px;
+        margin-right: 15px;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    li:last-child {
+        margin-top: .5rem;
+    
+        img {
+            padding-right: .3rem;
+        }
+    }
+}
+
+.bobba-register .bobba-online {
+    top: 15%;
+}

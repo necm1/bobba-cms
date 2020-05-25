@@ -1,0 +1,38 @@
+.article-image {
+    width: 120px;
+    height: 100%;
+    margin-right: 20px;
+    background-position: center;
+    background-color: rgba(14, 14, 14, 0.2);
+    border-radius: 5px;
+}
+
+.card-title {
+    font-size: 16px;
+    letter-spacing: normal;
+    font-weight: 400;
+    color: #cacaca;
+    -webkit-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+    text-overflow: ellipsis;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.card-text {
+    font-size: 14px;
+    color: #7a7a7a;
+    text-overflow: ellipsis;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+
+    &:hover .card-title {
+        color: #2b72e6;
+    }
+}

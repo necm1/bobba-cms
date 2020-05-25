@@ -1,0 +1,37 @@
+<div id="client-ui">
+    <div id="loader-wrapper" [@fadeOut]="loaded ? true : false">
+      <div id="loader-info">
+        <div id="loader-circle"></div>
+        <span id="loader-progress">0%</span>
+      </div>
+      <div id="loader-photo">
+        <img src="assets/images/client/default.png" />
+      </div>
+    </div>
+
+    <div id="client-flash">
+      <div class="container">
+        <div class="row d-block align-items-center text-center">
+          <div class="flash-illustration"></div>
+
+          <span id="flash-title" class="mb-4 d-block">Oh Bobba!</span>
+          <span id="flash-desc" class="w-25">Klick <a href="https://get.adobe.com/de/flashplayer" target="_blank">hier</a> und dann auf "Flash aktivieren", sobald du dazu aufgefordert bist. <br /> Wir sehen uns im Hotel!</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="client-icon client-web" (click)="back()"></div>
+    <div class="client-icon client-fullscreen"></div>
+  
+    <div id="client" #client></div>
+
+    <ng-container *ngIf="commands">
+      <ul id="commands-list" *ngIf="toggle" [@slideInOut] class="list-group">
+        <h5>alle commands für "<span id="command">{{ chatInput }}</span>"</h5>
+        
+        <ng-container *ngFor="let cmd of commands">
+          <li class="list-group-item" (click)="handleCommand(cmd.command)">:{{ cmd.command }}</li>
+        </ng-container>
+      </ul>
+    </ng-container>
+</div>

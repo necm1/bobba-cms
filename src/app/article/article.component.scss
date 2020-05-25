@@ -1,0 +1,58 @@
+.article-date {
+    opacity: 0.6;
+    font-size: 12px;
+}
+
+.article-author {
+    opacity: 0.6;
+    width: auto;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: #ffffff;
+    text-decoration: none;
+    -webkit-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+    position: relative;
+    padding-left: .8rem;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    img {
+        position: absolute;
+        left: -.67rem;
+        top: -.5rem;
+    }
+}
+
+.article-btn {
+    border: 0;
+    background: transparent;
+    color: #ffffff;
+    cursor: pointer;
+    opacity: .6;
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease;
+    font-size: 15px;
+
+    &.active {
+        opacity: 1;
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+
+    span {
+        padding-right: .3rem;
+    }
+}
+
+.comment-info {
+    small {
+        opacity: .6;
+    }
+}

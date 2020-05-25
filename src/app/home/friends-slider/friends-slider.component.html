@@ -1,0 +1,20 @@
+<ng-container *ngIf="loaderService.loader; else slider">
+    <app-loader></app-loader>
+  </ng-container>
+
+<ng-template #slider>
+    <swiper class="bobba-friends">
+        <ng-container *ngIf="friends.length > 0; else noFriends">
+            <ng-container *ngFor="let friend of friends;">
+                <div class="bobba-friend">
+                    <img [src]="'https://habbo.com/habbo-imaging/avatarimage?figure='+ friend.friend.look +'&amp;direction=3&amp;head_direction=3&amp;action=sml&amp;size=s&amp;gesture=wav&amp;headonly=1'">
+                    {{ friend.friend.username }}
+                </div>
+            </ng-container>
+        </ng-container>
+    
+        <ng-template #noFriends>
+            Im Moment sind keiner deiner Freunde online!
+        </ng-template>
+    </swiper>
+</ng-template>

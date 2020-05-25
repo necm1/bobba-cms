@@ -1,0 +1,50 @@
+<ng-container *ngIf="loaderService.loader; else articlesContent">
+    <app-loader></app-loader>
+</ng-container>
+
+<ng-template #articlesContent>
+    <div class="bobba-hero" *ngIf="articles" [ngStyle]="{'background-image':'url('+ firstArticle.image +')'}">
+        <div class="container">
+            <div class="bobba-hero-text">
+                <h3>Neuigkeiten</h3>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <ng-container *ngIf="articles">
+            <input type="text" class="form-control mb-3" placeholder="Suchen..." [(ngModel)] = "search" />
+    
+            <div class="row">
+                <ng-container *ngFor="let article of articles | searchArticles: 'title': search | paginate: { id: 'articles', itemsPerPage: 9, currentPage: paginationNumber }">
+                    <div class="col-4">
+                        <a [routerLink]="['/article', article.id]">
+                            <div class="card">
+                                <div class="card-body p-xl-2 p-lg-2 p-md-3 p-sm-4">
+                                    <div class="row no-gutters">
+                                        <div class="col-xl-5 col-lg-6 col-md-6 d-xl-block d-lg-block d-md-block dm-sm-none">
+                                            <div class="article-image" [style.backgroundImage]="'url('+ article.image +')'"></div>
+                                        </div>
+
+                                        <div class="col-xl-7 col-lg-6 col-md-7 col-sm-12">
+                                            <div class="card-block py-3">
+                                                <h4 class="card-title m-0">{{ article.title }}</h4>
+                                                <small class="card-text">{{ article.created_at | date: 'dd.MMMM.yyyy' }}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </ng-container>
+            </div>
+
+            <ng-container *ngIf="articles.length > 9">
+                <pagination-template #p="paginationApi" id="articles" (pageChange)="paginationNumber = $event">
+                    <app-pagination [data]="p" class="float-right"></app-pagination>
+                </pagination-template>
+            </ng-container>
+        </ng-container>
+    </div>
+</ng-template>

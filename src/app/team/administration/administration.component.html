@@ -1,0 +1,44 @@
+<ng-container *ngIf="loader.loader; else administrationList">
+    <app-loader></app-loader>
+</ng-container>
+
+<ng-template #administrationList>
+    <ng-container *ngIf="administration; else noAdministration">
+        <div class="row">
+            <ng-container *ngFor="let admin of administration">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                    <div class="card card-default">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="user-avatar" [style.backgroundImage]="'url(https://www.habbo.com/habbo-imaging/avatarimage?figure='+ admin.look +'&amp;direction=2&amp;head_direction=3&amp;action=wav&amp;gesture=sml)'"></div>
+                                </div>
+
+                                <div class="col-8">
+                                    <div class="user-info">
+                                        <a [routerLink]="['/profile', admin.username]">
+                                            <strong>{{ admin.username }}</strong>
+                                            <span class="user-status" [ngClass]="(admin.online == 1) ? 'online' : 'offline'"></span>
+                                        </a>
+                                        
+                                        <small class="d-block">{{ admin.motto }}</small>
+                                    </div>
+                                </div>
+
+                                <div class="col-2 rank-name">
+                                    <img src="assets/images/badges/dev.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+
+    <ng-template #noAdministration>
+        <div class="text-center">
+            Es wurden keine Mitglieder gefunden!
+        </div>
+    </ng-template>
+</ng-template>
