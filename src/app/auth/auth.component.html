@@ -1,0 +1,26 @@
+<div class="row" style="height: 100vh;">
+    <div class="col-md-12 col-lg-6 d-flex flex-column justify-content-center align-items-center">
+       <img src="assets/images/logo.png" alt="Bobba Logo" title="Bobba Logo" class="img-responsive mb-2 bobba-logo">
+       
+       <form class="w-50" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+              <input type="text" formControlName="username" [ngClass]="{ 'has-error': isSubmitted && f.username.errors }" placeholder="Benutzername" autofocus="" required="" autocomplete="username" class="form-control" />
+          </div>
+
+          <div class="form-group mb-5">
+              <input type="password" formControlName="password" [ngClass]="{ 'has-error': isSubmitted && f.username.errors }" placeholder="Passwort" required="" autocomplete="current-password" class="form-control" />
+          </div>
+          <div class="form-group">
+              <button type="submit" class="btn btn-primary w-100">Anmelden</button>
+          </div>
+          <a routerLink='/register'>Registrieren</a>
+       </form>
+    </div>
+
+    <div class="col-md-12 col-lg-6 mt-md-5 mt-lg-0 d-flex justify-content-center align-items-center">
+       <div class="bobba-shape blur-1"></div>
+       <div class="bobba-register">
+          <p class="bobba-online"><span _ngcontent-ubm-c56="">1337</span> Bobbas im Hotel</p>
+       </div>
+    </div>
+ </div>

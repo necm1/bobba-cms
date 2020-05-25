@@ -1,1 +1,69 @@
-<p>register works!</p>
+<div class="row" style="height: 100vh">
+    <div class="col-md-12 col-lg-6 mt-md-5 mt-lg-0 d-flex justify-content-center align-items-center">
+        <div class="bobba-shape">
+            <div class="bobba-register">
+                <p class="bobba-online"><span>1337</span> Bobbas im Hotel</p>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="col-md-12 col-lg-6 d-flex flex-column justify-content-center align-items-center">
+        <form class="w-50" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="row pb-3">
+                <div class="col-7">
+                    <h4>Registrierung</h4>
+                    <small>Wir freuen uns, dass du zu uns kommen möchtest!</small>
+                </div>
+       
+                <div class="col-5">
+                    <img src="assets/images/logo.png" width="150" class="float-right img-responsive mb-2 bobba-logo" alt="Bobba Logo" title="Bobba Logo">
+                </div>
+            </div>
+ 
+            <div class="form-group">
+                <label>Wie möchtest du denn bei uns heißen?</label>
+                <input type="text" class="form-control" formControlName="username" [ngClass]="{ 'has-error': isSubmitted && f.username.errors }" placeholder="Benutzername"autofocus required autocomplete="username" />
+            </div>
+ 
+            <div class="form-group">
+                <label for="email">Damit wir dich kontaktieren können oder du dein
+                    Passwort vergessen solltest, wie lautet deine E-Mail Adresse?</label>
+                <input type="email" class="form-control" formControlName="mail" [ngClass]="{ 'has-error': isSubmitted && f.mail.errors }" placeholder="E-Mail" autocomplete="email" />
+            </div>
+ 
+            <div class="form-group">
+                <label for="password">Zur Sicherheit benötigst du auch bei uns ein Passwort.
+                    Wähle ein sicheres, welches du nicht überall verwendest!</label>
+                <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'has-error': isSubmitted && f.password.errors }" placeholder="Passwort" required autocomplete="current-password" />
+            </div>
+ 
+            <div class="form-group">
+                <input type="password" class="form-control" formControlName="password_confirm" [ngClass]="{ 'has-error': isSubmitted && f.password_confirm.errors }" placeholder="Passwort wiederholen" required autocomplete="current-password" />
+            </div>
+ 
+            <div class="form-group mb-5">
+                <ngx-recaptcha2 #captchaElem
+                [siteKey]="recaptchaOptions.key"
+                [useGlobalDomain]="false"
+                (reset)="handleReset()"
+                (expire)="handleExpire()"
+                (error)="handleError()"
+                (load)="handleLoad()"
+                (success)="handleSuccess($event)"
+                [hl]="recaptchaOptions.lang"
+                [theme]="recaptchaOptions.theme"
+                formControlName="recaptcha">
+              </ngx-recaptcha2>
+            </div>
+ 
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary w-100">Registrieren</button>
+            </div>
+ 
+            <div class="text-center">
+                <p class="text-lines py-2">oder</p>
+                <a class="cursor-pointer" routerLink='/'>ZURÜCK ZUM LOGIN</a>
+            </div>
+        </form>
+    </div>
+</div>

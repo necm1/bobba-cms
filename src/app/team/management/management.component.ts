@@ -17,7 +17,7 @@ export class ManagementComponent implements OnInit, OnDestroy {
               private team: TeamService) { }
 
   ngOnInit(): void {
-    this.managementStream = this.team.helpers().subscribe({
+    this.managementStream = this.team.management().subscribe({
       next: (e)  => {
         this.management = e.data;
         this.loader.hide();

@@ -8,7 +8,6 @@ import * as alertify from 'alertifyjs';
 import { UserService } from '../services/user/user.service';
 import { first } from 'rxjs/operators';
 import { TitleService } from '../services/title.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-auth',
@@ -28,7 +27,6 @@ export class AuthComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private router: Router,
     private title: TitleService,
-    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -38,7 +36,6 @@ export class AuthComponent implements OnInit, OnDestroy {
     });
 
     this.title.set('A World Connected');
-    this.spinner.hide();
   }
 
   get f(): any {
