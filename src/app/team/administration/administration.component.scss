@@ -1,1 +1,47 @@
 
+.user-avatar {
+    width: 45px;
+    height: 60px;
+    background-position-x: -12px;
+    background-position-y: -19px;
+    background-repeat: no-repeat;
+}
+
+.user-info {
+    padding-top: .3rem;
+
+    a {
+        color: #fff;
+        position: relative;
+    }
+}
+
+.card {
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .06);
+}
+
+small {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.user-status {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    position: absolute;
+    top: .3rem;
+    right: -.6rem;
+
+    &.online {
+        background: #73f375;
+    }
+
+    &.offline {
+        background: #f37373;
+    }
+}
+
+.rank-name {
+    padding-top: 1rem;
+}

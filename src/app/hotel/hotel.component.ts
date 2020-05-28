@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, NgZone, Inject, ViewEncapsulation, ElementRef, ViewChild } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 import { UserService } from 'src/app/services/user/user.service';
 import { client as clientConfig } from 'src/app/config';
 import * as swfobject from 'es-swfobject';
@@ -24,44 +24,47 @@ declare global {
   selector: 'app-hotel',
   templateUrl: './hotel.component.html',
   styleUrls: ['./hotel.component.scss'],
-  encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('fadeOut', [
-      state('true', style({ opacity: 0, zIndex: -1 })),
-      state('false', style({ opacity: 1, zIndex: 99 })),
+      state('1', style({ opacity: 0, zIndex: -1 })),
+      state('0', style({ opacity: 1 })),
 
-      transition('true => false', animate('350ms ease-in')),
-      transition('false => true', animate('350ms ease-out'))
+      transition('* => *', animate('300ms ease-in')),
     ]),
 
     trigger('slideInOut', [
-      state('true', style({ transform: 'translateY(1%)' })),
-      // state('false', style({ transform: 'translateY(130%)' })),
+      state('1', style({ transform: 'translateY(1%)' })),
+      state('0', style({ transform: 'translateY(130%)' })),
 
-      transition(':enter', [
-        style({ transform: 'translateY(130%)' }),
-        animate('350ms ease-in', style({ transform: 'translateY(1%)' }))
-      ]),
+      transition('* => *', animate('300ms ease-in')),
 
-      transition(':leave', [
-        style({ transform: 'translateY(1%)' }),
-        animate('350ms ease-in', style({ transform: 'translateY(130%)' }))
-      ])
+      // transition(':enter', [
+      //   style({ transform: 'translateY(130%)' }),
+      //   animate('350ms ease-in', style({ transform: 'translateY(1%)' }))
+      // ]),
+
+      // transition(':leave', [
+      //   style({ transform: 'translateY(1%)' }),
+      //   animate('350ms ease-in', style({ transform: 'translateY(130%)' }))
+      // ])
     ])
   ]
 })
 export class HotelComponent implements OnInit, OnDestroy {
   ssoStream: Subscription;
   commandsStream: Subscription;
+  commandSubjectStream: Subscription;
   routerStream: Subscription;
   socketStream: Subscription;
 
-  commandEvent: CustomEvent;
-  public toggle = false;
-  public chatInput: string;
+  loaded = false;
 
-  public loaded = false;
   commands: Command[];
+  commandEvent: CustomEvent;
+  chatInput: string;
+
+  commandTrigger = false;
+  commandSubject = new Subject<boolean>();
 
   constructor(
     private router: Router,
@@ -89,10 +92,11 @@ export class HotelComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const flashDetected = new FlashDetect();
+    this.commandSubjectStream = this.commandSubject.subscribe(num => this.commandTrigger = num);
 
     if (!this.loaded && flashDetected.installed) {
       require('./habboapi.js');
-      // require('./client.js');
+      require('./client.js');
 
       this.ssoStream = this.userService.sso().subscribe({
         next: ticket => {
@@ -118,8 +122,6 @@ export class HotelComponent implements OnInit, OnDestroy {
           window.FlashExternalInterface = {};
           window.FlashExternalGameInterface = {};
 
-          window.FlashExternalInterface.logLoginStepEnabled = false;
-
           window.FlashExternalInterface.logLoginStep = (e: any) => {
             if (e === 'client.init.start') {
               this.document.getElementById('loader-progress').innerHTML = '10%';
@@ -142,21 +144,26 @@ export class HotelComponent implements OnInit, OnDestroy {
             }
 
             if (e === 'client.init.localization.loaded') {
+              if (!this.loaded) {
+                this.loaded = true;
+              }
+
               this.document.getElementById('loader-progress').innerHTML = '75%';
-              this.loaded = true;
             }
           };
 
-          window.FlashExternalInterface.bobbaChat = (e: string) => {
-            console.log(e);
+          window.FlashExternalInterface.disconnect = () => {
+            this.document.getElementById('disconnected').style.display = 'block';
+          };
 
-            if (e.length > 0 && e.includes(':')) {
-              if (!this.toggle) {
-                this.toggle = true;
-              }
-            } else {
-              this.toggle = false;
+          window.FlashExternalInterface.bobbaChat = (e: string) => {
+            if (!this.commandTrigger && e.indexOf(':', 0) !== -1) {
+              this.commandSubject.next(true);
+            }  else if (this.commandTrigger && e.indexOf(':', 0) === -1) {
+              this.commandSubject.next(false);
             }
+
+            console.log(this.commandTrigger);
           };
 
           window.FlashExternalInterface.logout = () => this.zone.run(() => {
@@ -203,7 +210,9 @@ export class HotelComponent implements OnInit, OnDestroy {
   }
 
   handleCommand(command: string) {
-    this.toggle = !this.toggle;
+    if (this.commandTrigger) {
+      this.commandSubject.next(false);
+    }
 
     window.dispatchEvent(new CustomEvent('commandMessage', {
       detail: {
@@ -213,8 +222,7 @@ export class HotelComponent implements OnInit, OnDestroy {
   }
 
   back() {
-    // this.location.back();
-    this.toggle = !this.toggle;
+    this.location.back();
   }
 
   ngOnDestroy(): void {
@@ -224,6 +232,10 @@ export class HotelComponent implements OnInit, OnDestroy {
 
     if (this.commandsStream && !this.commandsStream.closed) {
       this.commandsStream.unsubscribe();
+    }
+
+    if (this.commandSubjectStream && !this.commandSubjectStream.closed) {
+      this.commandSubjectStream.unsubscribe();
     }
 
     if (this.routerStream && !this.routerStream.closed) {

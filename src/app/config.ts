@@ -21,7 +21,7 @@ export const config = {
 };
 
 export const client = {
-    swf: `${config.app.swf}/gordon/PRODUCTION-201602082203-712976078/Habbo.swf?t=12328`,
+    swf: `${config.app.swf}/gordon/PRODUCTION-201602082203-712976078/Habbocmd.swf`,
     express: 'https://habbo.st/public/assets/flash/expressInstall.swf',
 
     vars: {
@@ -32,11 +32,11 @@ export const client = {
         'site.url': config.app.url,
         'url.prefix': config.app.url,
         'client.reload.url': `${config.app.url}/hotel`,
-        'client.fatal.error.url': `${config.app.url}/fatal`,
-        'client.connection.failed.url': `${config.app.url}/failed`,
+        'client.fatal.error.url': `${config.app.url}/hotel`,
+        'client.connection.failed.url': `${config.app.url}/hotel`,
         'external.override.texts.txt': `${config.app.swf}/gamedata/override/external_flash_override_texts.txt`,
         'external.override.variables.txt': `${config.app.swf}/gamedata/override/external_override_variables.txt`,
-        'external.variables.txt': `${config.app.swf}/gamedata/external_variables.txt?t=1337`,
+        'external.variables.txt': `${config.app.swf}/gamedata/external_variables.txt`,
         'external.texts.txt': `${config.app.swf}/gamedata/external_flash_texts.txt`,
         'external.figurepartlist.txt': `${config.app.swf}/gamedata/figuredata.xml`,
         'flash.dynamic.avatar.configuration': `${config.app.swf}/gamedata/figuremap.xml`,
@@ -49,6 +49,7 @@ export const client = {
         'flash.client.url': `${config.app.swf}/gordon/PRODUCTION-201602082203-712976078/`,
         'diamonds.enabled': '1',
         'logout.url': `${config.app.url}/logout`,
+        spaweb: '1'
     },
 
     params: {

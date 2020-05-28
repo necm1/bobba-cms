@@ -148,33 +148,34 @@
     top: calc(50% - 217px);
     display: inline-block;
     position: absolute;
-}
 
-#loader-photo > img {
-    top: 51px;
-    left: 95px;
-    width: 320px;
-    height: 320px;
-    display: block;
-    position: absolute;
-}
+    & > img {
+        top: 51px;
+        left: 95px;
+        width: 320px;
+        height: 320px;
+        display: block;
+        position: absolute;
+    }
 
-#loader-photo:after {
-    content: ' ';
-    width: 100%;
-    height: 100%;
-    display: block;
-    position: absolute;
-    background-image: url('../../assets/images/client/loadafter.png');
-}
+    &:after {
+        content: ' ';
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: absolute;
+        background-image: url('../../assets/images/client/loadafter.png');
+    }
 
-#loader-photo:before {
-    content: ' ';
-    width: 100%;
-    height: 100%;
-    display: block;
-    position: absolute;
-    background-image: url('../../assets/images/client/loadphoto.png');
+    &:before {
+        content: ' ';
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: absolute;
+        background-image: url('../../assets/images/client/loadphoto.png');
+    }
+    
 }
 
 #client-flash {
@@ -214,6 +215,16 @@
         height: 174px;
         background: url('../../assets/images/client/frankflash.png');
     }
+}
+
+.ilustration {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 142px;
+    width: 185px;
+    background: url('../../assets/images/sprite.png');
+    background-position: 0 -36px
 }
 
 #flash-title {
@@ -393,5 +404,74 @@
         &:focus {
             background: rgba(23, 22, 22, 0.96)
         }
+    }
+}
+
+#disconnected {
+    position: fixed;
+    z-index: 9999;
+    overflow: hidden;
+    background-color: rgba(68, 68, 68, .9);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    font-size: 18px;
+    user-select: none;
+    line-height: 10px;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+    display: none;
+
+    &:before {
+        left: 0;
+        top: 0;
+        content: '';
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        position: fixed;
+        pointer-events: none;
+        opacity: .02;
+        background-image: url('../../assets/images/gass.gif');
+        background-attachment: fixed;
+    }
+
+    & > #flash-center {
+        position: absolute;
+        height: 440px;
+        width: 710px;
+        top: calc(50% - 400px/2);
+        left: calc(50% - 710px/2)
+    }
+    
+    & > #flash-center .title {
+        position: relative;
+        color: #fff;
+        font-size: 310%;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+}
+
+.dc-btn {
+    font-size: 13px;
+    font-weight: 400;
+    height: 17px;
+    margin-right: auto;
+    margin-left: auto;
+    text-decoration: none;
+    padding: .5rem;
+    margin-top: 9px;
+    color: #545042;
+    border-radius: 2px;
+    background-color: #fc0;
+    cursor: pointer;
+
+    &:hover {
+        color: #545042;
     }
 }

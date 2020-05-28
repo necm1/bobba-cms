@@ -1,5 +1,5 @@
 <div id="client-ui">
-    <div id="loader-wrapper" [@fadeOut]="loaded ? true : false">
+    <div id="loader-wrapper" [@fadeOut]=loaded>
       <div id="loader-info">
         <div id="loader-circle"></div>
         <span id="loader-progress">0%</span>
@@ -20,13 +20,22 @@
       </div>
     </div>
 
+    <div id="disconnected">
+      <div id="flash-center">
+          <div class="ilustration"></div>
+          <p class="mt-3">Getrennt!</p>
+          <p style="font-size: 12px;">Du hast die Verbindung zum Hotel verloren.</p><br>
+          <a routerLink='/' class="dc-btn">Bring mich zurück! <b>»</b></a>
+      </div>
+    </div>
+
     <div class="client-icon client-web" (click)="back()"></div>
     <div class="client-icon client-fullscreen"></div>
   
     <div id="client" #client></div>
 
     <ng-container *ngIf="commands">
-      <ul id="commands-list" *ngIf="toggle" [@slideInOut] class="list-group">
+      <ul id="commands-list" class="list-group" [@slideInOut]=commandTrigger>
         <h5>alle commands für "<span id="command">{{ chatInput }}</span>"</h5>
         
         <ng-container *ngFor="let cmd of commands">
